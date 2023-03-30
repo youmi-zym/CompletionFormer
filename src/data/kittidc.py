@@ -88,7 +88,7 @@ class KITTIDC(BaseDataset):
         self.args = args
         mode = 'test' if mode == 'val' else mode
         self.mode = mode
-        self.random_sample = (args.random_sample > 0)
+        self.lidar_lines = args.lidar_lines
 
         if mode != 'train' and mode != 'val' and mode != 'test':
             raise NotImplementedError
@@ -239,8 +239,6 @@ class KITTIDC(BaseDataset):
 
             gt = TF.to_tensor(np.array(gt))
 
-        if self.args.num_sample > 0:
-            depth = self.get_sparse_depth(depth, self.args.num_sample)
 
         output = {'rgb': rgb, 'dep': depth, 'gt': gt, 'K': torch.Tensor(K)}
 
@@ -273,8 +271,12 @@ class KITTIDC(BaseDataset):
             K = [float(K_cam[0]), float(K_cam[4]), float(K_cam[2]),
                  float(K_cam[5])]
 
-        keep_ratio = 1.0   # modify here to mimic various Lines, such as [0, 1/16, 1/4, 1/1] -> [0, 4, 16, 64]Lines
-        if keep_ratio > 0:
+        # modify here to mimic various lidar lines, such as [0, 1/16, 1/4, 1/1] -> [0, 4, 16, 64]Lines
+        keep_ratio = (self.lidar_lines / 64.0)
+        assert keep_ratio >=0 and keep_ratio <= 1.0, keep_ratio
+        if keep_ratio >= 0.9999:
+            pass
+        elif keep_ratio > 0:
             Km = np.eye(3)
             Km[0, 0] = K[0]
             Km[1, 1] = K[1]
@@ -296,22 +298,3 @@ class KITTIDC(BaseDataset):
 
         return rgb, depth, gt, K
 
-    def get_sparse_depth(self, dep, num_sample):
-        channel, height, width = dep.shape
-
-        assert channel == 1
-
-        idx_nnz = torch.nonzero(dep.view(-1) > 0.0001, as_tuple=False)
-
-        num_idx = len(idx_nnz)
-        idx_sample = torch.randperm(num_idx)[:num_sample]
-
-        idx_nnz = idx_nnz[idx_sample[:]]
-
-        mask = torch.zeros((channel*height*width))
-        mask[idx_nnz] = 1.0
-        mask = mask.view((channel, height, width))
-
-        dep_sp = dep * mask.type_as(dep)
-
-        return dep_sp

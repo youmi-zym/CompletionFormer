@@ -51,7 +51,8 @@ class NYU(BaseDataset):
         super(NYU, self).__init__(args, mode)
 
         self.args = args
-        self.mode = mode
+        # self.mode = mode
+        self.mode = mode if mode in ['train', ] else 'test'
 
         if mode != 'train' and mode != 'val' and mode != 'test':
             raise NotImplementedError
@@ -74,7 +75,7 @@ class NYU(BaseDataset):
 
         self.augment = self.args.augment
 
-        data_mode = mode
+        data_mode = self.mode
         with open(self.args.split_json) as json_file:
             json_data = json.load(json_file)
             self.sample_list = json_data[data_mode]

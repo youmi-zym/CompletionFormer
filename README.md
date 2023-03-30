@@ -16,7 +16,7 @@
     ·
     <a href="http://vision.deis.unibo.it/~smatt/Site/Home.html"><strong>Stefano Mattoccia</strong></a>
   </p>
-  <h3 align="center"><a href="">Paper</a> | <a href="">Supplementary</a> | <a href="https://youmi-zym.github.io/completionformer">Project Page</a></h3>
+  <h3 align="center"><a href="">Paper</a> | <a href="https://youmi-zym.github.io/projects/CompletionFormer">Project Page</a></h3>
   <div align="center"></div>
 </p>
 <p align="center">
@@ -213,11 +213,11 @@ $ python main.py --dir_data PATH_TO_NYUv2 --data_name NYU  --split_json ../data_
 
 # An example command for KITTI DC dataset testing
 $ python main.py --dir_data PATH_TO_KITTI_DC --data_name KITTIDC --split_json ../data_json/kitti_dc.json \
-    --patch_height 240 --patch_width 1216 --gpus 0,1,2,3 --max_depth 90.0\
+    --patch_height 240 --patch_width 1216 --gpus 0,1,2,3 --max_depth 90.0 \
     --test_only --pretrain PATH_TO_WEIGHTS --save NAME_TO_SAVE
 ```
 
-**Pretrained Checkpoints**: NYU, KITTI_L1, KITTI_L1L2 (comming soon!)
+**Pretrained Checkpoints**: NYU, KITTI_DC (comming soon!)
 
 To generate KITTI DC Online evaluation data:
 
