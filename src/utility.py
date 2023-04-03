@@ -1,5 +1,6 @@
 """
     CompletionFormer
+
     ======================================================================
 
     Some of useful functions are defined here.
@@ -50,8 +51,7 @@ def make_optimizer_scheduler(args, target, num_batches=-1):
 
     trainable = target.parameters()
     optimizer = optimizer_class(trainable, **kwargs_optimizer)
-    scheduler = lrs.ExponentialLR(optimizer, gamma=args.gamma)
-
+    scheduler = lrs.MultiStepLR(optimizer, milestones=args.milestones, gamma=args.gamma)
 
     return optimizer, scheduler
 

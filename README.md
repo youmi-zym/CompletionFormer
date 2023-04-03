@@ -213,7 +213,7 @@ $ python main.py --dir_data PATH_TO_NYUv2 --data_name NYU  --split_json ../data_
 
 # An example command for KITTI DC dataset testing
 $ python main.py --dir_data PATH_TO_KITTI_DC --data_name KITTIDC --split_json ../data_json/kitti_dc.json \
-    --patch_height 240 --patch_width 1216 --gpus 0,1,2,3 --max_depth 90.0 \
+    --patch_height 240 --patch_width 1216 --gpus 0 --max_depth 90.0 \
     --test_only --pretrain PATH_TO_WEIGHTS --save NAME_TO_SAVE
 ```
 
@@ -224,7 +224,7 @@ To generate KITTI DC Online evaluation data:
 ```bash
 $ cd THIS_PROJECT_ROOT/src
 $ python main.py --dir_data PATH_TO_KITTI_DC --data_name KITTIDC --split_json ../data_json/kitti_dc_test.json \
-    --patch_height 240 --patch_width 1216 --gpus 0,1,2,3 --max_depth 90.0 \
+    --patch_height 240 --patch_width 1216 --gpus 0 --max_depth 90.0 \
     --test_only --pretrain PATH_TO_WEIGHTS --save_image --save_result_only --save NAME_TO_SAVE
 ```
 
@@ -237,4 +237,17 @@ Thanks the authors for their works:
 
 [NLSPN](https://github.com/zzangjinsun/NLSPN_ECCV20), [MPViT](https://github.com/youngwanLEE/MPViT), [PVT](https://github.com/whai362/PVT), [Monodepth2](https://github.com/nianticlabs/monodepth2)
 
+
+## Citation
+
+If you find our work useful in your research please consider citing our paper:
+
+```
+@inproceedings{Zhang2023CompletionFormer,
+      title     = {CompletionFormer: Depth Completion with Convolutions and Vision Transformers},
+      author    = {Zhang, Youmin and Guo, Xianda and Poggi, Matteo and Zhu, Zheng and Huang, Guan and Mattoccia, Stefano},
+      booktitle = {CVPR},
+      year      = {2023}
+  }
+```
 
