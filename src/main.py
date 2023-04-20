@@ -38,14 +38,18 @@ import torch.distributed as dist
 import apex
 from apex.parallel import DistributedDataParallel as DDP
 from apex import amp
-
-# Minimize randomness
-torch.manual_seed(args_config.seed)
-np.random.seed(args_config.seed)
-random.seed(args_config.seed)
-torch.cuda.manual_seed_all(args_config.seed)
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
+
+# Minimize randomness
+def init_seed(seed=None):
+    if seed is None:
+        seed = args_config.seed
+
+    torch.manual_seed(seed)
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.cuda.manual_seed_all(seed)
 
 
 def check_args(args):
@@ -81,8 +85,6 @@ def train(gpu, args):
 
     sampler_train = DistributedSampler(
         data_train, num_replicas=args.num_gpus, rank=gpu)
-    sampler_val = DistributedSampler(
-        data_val, num_replicas=args.num_gpus, rank=gpu)
 
     batch_size = args.batch_size
 
@@ -92,8 +94,10 @@ def train(gpu, args):
         drop_last=True)
     loader_val = DataLoader(
         dataset=data_val, batch_size=1, shuffle=False,
-        num_workers=args.num_threads, pin_memory=True, sampler=sampler_val,
-        drop_last=False)
+        num_workers=4, drop_last=False)
+
+    if gpu == 0:
+        print(f'Each GPU with training data {len(loader_train)}, validation data {len(loader_val)}!')
 
     # Network
     if args.model == 'CompletionFormer':
@@ -190,6 +194,7 @@ def train(gpu, args):
             log_cnt = 0.0
             log_loss = 0.0
 
+        init_seed(seed=int(time.time()))
         for batch, sample in enumerate(loader_train):
             sample = {key: val.cuda(gpu) for key, val in sample.items()
                       if val is not None}
@@ -269,13 +274,13 @@ def train(gpu, args):
         torch.set_grad_enabled(False)
         net.eval()
 
-        num_sample = len(loader_val) * loader_val.batch_size * args.num_gpus
-
+        num_sample = len(loader_val) * loader_val.batch_size
         if gpu == 0:
             pbar = tqdm(total=num_sample)
-            log_cnt = 0.0
-            log_loss = 0.0
+        log_cnt = 0.0
+        log_loss = 0.0
 
+        init_seed()
         for batch, sample in enumerate(loader_val):
             sample = {key: val.cuda(gpu) for key, val in sample.items()
                       if val is not None}
@@ -290,7 +295,7 @@ def train(gpu, args):
             loss_val = loss_val / loader_val.batch_size
 
             if gpu == 0:
-                metric_val = metric.evaluate(sample, output, 'train')
+                metric_val = metric.evaluate(sample, output, 'val')
                 writer_val.add(loss_val, metric_val)
 
                 log_cnt += 1
@@ -301,14 +306,12 @@ def train(gpu, args):
                     'Val', current_time, log_loss / log_cnt)
                 if batch % args.print_freq == 0:
                     pbar.set_description(error_str)
-                    pbar.update(loader_val.batch_size * args.num_gpus)
+                    pbar.update(loader_val.batch_size)
 
         if gpu == 0:
             pbar.close()
 
             writer_val.update(epoch, sample, output)
-            print('')
-
             writer_val.save(epoch, batch, sample, output)
 
         torch.set_grad_enabled(True)
@@ -369,6 +372,7 @@ def test(args):
 
     t_total = 0
 
+    init_seed()
     for batch, sample in enumerate(loader_test):
         sample = {key: val.cuda() for key, val in sample.items()
                   if val is not None}
@@ -404,6 +408,7 @@ def test(args):
 
 
 def main(args):
+    init_seed()
     if not args.test_only:
         if args.no_multiprocessing:
             train(0, args)

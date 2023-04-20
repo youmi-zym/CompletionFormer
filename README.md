@@ -217,7 +217,7 @@ $ python main.py --dir_data PATH_TO_KITTI_DC --data_name KITTIDC --split_json ..
     --test_only --pretrain PATH_TO_WEIGHTS --save NAME_TO_SAVE
 ```
 
-**Pretrained Checkpoints**: NYU, KITTI_DC (comming soon!)
+**Pretrained Checkpoints**: [NYUv2](https://drive.google.com/file/d/1nfdfh8bIQEzAjva8BJmnpRsqHZl66nho/view?usp=sharing), KITTI_DC (comming soon!)
 
 To generate KITTI DC Online evaluation data:
 
@@ -233,9 +233,9 @@ Images for submission can be found in THIS_PROJECT_ROOT/experiments/NAME_TO_SAVE
 
 ## 👩‍⚖️ Acknowledgement
 
-Thanks the authors for their works:
+Thanks the authors for their works: [NLSPN](https://github.com/zzangjinsun/NLSPN_ECCV20), [MPViT](https://github.com/youngwanLEE/MPViT), [PVT](https://github.com/whai362/PVT), [Monodepth2](https://github.com/nianticlabs/monodepth2).
 
-[NLSPN](https://github.com/zzangjinsun/NLSPN_ECCV20), [MPViT](https://github.com/youngwanLEE/MPViT), [PVT](https://github.com/whai362/PVT), [Monodepth2](https://github.com/nianticlabs/monodepth2)
+Besides, we also thank [DySPN](https://arxiv.org/abs/2202.09769) for providing their evalution results on KITTI DC.
 
 
 ## Citation

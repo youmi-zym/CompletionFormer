@@ -131,9 +131,9 @@ class Block(nn.Module):
         _, _, Cx = x.shape
         input = input.transpose(1, 2).view(B, C, H, W)
         input = self.resblock(input)
-        x = x.transpose(1, 2).view(B, Cx, H, W)
 
         # fusion
+        x = x.transpose(1, 2).view(B, Cx, H, W)
         x = self.concat_conv(torch.cat([x, input], dim=1))
         x = x.flatten(2).transpose(1, 2)
 

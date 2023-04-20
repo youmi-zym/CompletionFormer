@@ -67,7 +67,10 @@ class BaseSummary(SummaryWriter):
         # Do update
 
         self.reset()
-        pass
+
+    def reset(self):
+        self.loss = []
+        self.metric = []
 
     def make_dir(self, epoch, idx):
         pass

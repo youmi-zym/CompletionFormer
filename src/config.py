@@ -11,7 +11,7 @@ import time
 import argparse
 
 
-parser = argparse.ArgumentParser(description='NLSPN')
+parser = argparse.ArgumentParser(description='CompletionFormer')
 
 
 # Dataset
@@ -50,7 +50,7 @@ parser.add_argument('--top_crop',
 # Hardware
 parser.add_argument('--seed',
                     type=int,
-                    default=7240,
+                    default=43,
                     help='random seed point')
 parser.add_argument('--gpus',
                     type=str,
@@ -84,10 +84,6 @@ parser.add_argument('--embed_dim',
                     type=int,
                     default=64,
                     help='number of channels for decoder')
-parser.add_argument('--multiscale_fusion',
-                    type=int,
-                    default=1,
-                    help='whether collect multiscale feature all together for fusion, >0 True, <=0 False')
 parser.add_argument('--from_scratch',
                     action='store_true',
                     default=False,
@@ -136,13 +132,13 @@ parser.add_argument('--loss',
                     help='loss function configuration')
 parser.add_argument('--epochs',
                     type=int,
-                    default=72,
+                    default=80,
                     # default=100,
                     help='number of epochs to train')
 parser.add_argument('--milestones',
                     nargs="+",
                     type=int,
-                    default=[36, 48, 56, 64, 72],
+                    default=[36, 60, 72, 76, ],
                     # default=[50, 60, 70, 80, 90],
                     help='learning rate decay schedule')
 parser.add_argument('--opt_level',
