@@ -16,11 +16,11 @@
     ·
     <a href="http://vision.deis.unibo.it/~smatt/Site/Home.html"><strong>Stefano Mattoccia</strong></a>
   </p>
-  <h3 align="center"><a href="">Paper</a> | <a href="https://youmi-zym.github.io/projects/CompletionFormer">Project Page</a></h3>
+  <h3 align="center"><a href="">Paper (Coming Soon)</a> | <a href="https://youmi-zym.github.io/projects/CompletionFormer">Project Page</a></h3>
   <div align="center"></div>
 </p>
 <p align="center">
-  <a href="">
+  <a href="https://youmi-zym.github.io/projects/CompletionFormer">
     <img src="./media/architecture.png" alt="Logo" width="98%">
   </a>
 </p>
@@ -213,11 +213,11 @@ $ python main.py --dir_data PATH_TO_NYUv2 --data_name NYU  --split_json ../data_
 
 # An example command for KITTI DC dataset testing
 $ python main.py --dir_data PATH_TO_KITTI_DC --data_name KITTIDC --split_json ../data_json/kitti_dc.json \
-    --patch_height 240 --patch_width 1216 --gpus 0 --max_depth 90.0 \
+    --patch_height 240 --patch_width 1216 --gpus 0 --max_depth 90.0 --top_crop 100 --test_crop \
     --test_only --pretrain PATH_TO_WEIGHTS --save NAME_TO_SAVE
 ```
 
-**Pretrained Checkpoints**: [NYUv2](https://drive.google.com/file/d/1nfdfh8bIQEzAjva8BJmnpRsqHZl66nho/view?usp=sharing), KITTI_DC (comming soon!)
+**Pretrained Checkpoints**: [NYUv2](https://drive.google.com/file/d/1Hc-eS2Oa2sODdujoJv2UXXME8IQyj7FX/view?usp=sharing), KITTI_DC (comming soon!)
 
 To generate KITTI DC Online evaluation data:
 
@@ -233,7 +233,7 @@ Images for submission can be found in THIS_PROJECT_ROOT/experiments/NAME_TO_SAVE
 
 ## 👩‍⚖️ Acknowledgement
 
-Thanks the authors for their works: [NLSPN](https://github.com/zzangjinsun/NLSPN_ECCV20), [MPViT](https://github.com/youngwanLEE/MPViT), [PVT](https://github.com/whai362/PVT), [Monodepth2](https://github.com/nianticlabs/monodepth2).
+Thanks the authors for their works: [NLSPN](https://github.com/zzangjinsun/NLSPN_ECCV20), [CMT](https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_CMT_Convolutional_Neural_Networks_Meet_Vision_Transformers_CVPR_2022_paper.pdf) [MPViT](https://github.com/youngwanLEE/MPViT), [PVT](https://github.com/whai362/PVT), [Monodepth2](https://github.com/nianticlabs/monodepth2).
 
 Besides, we also thank [DySPN](https://arxiv.org/abs/2202.09769) for providing their evalution results on KITTI DC.
 

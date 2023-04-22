@@ -132,13 +132,13 @@ parser.add_argument('--loss',
                     help='loss function configuration')
 parser.add_argument('--epochs',
                     type=int,
-                    default=80,
+                    default=72,
                     # default=100,
                     help='number of epochs to train')
 parser.add_argument('--milestones',
                     nargs="+",
                     type=int,
-                    default=[36, 60, 72, 76, ],
+                    default=[36, 48, 56, 64],
                     # default=[50, 60, 70, 80, 90],
                     help='learning rate decay schedule')
 parser.add_argument('--opt_level',
