@@ -217,7 +217,7 @@ $ python main.py --dir_data PATH_TO_KITTI_DC --data_name KITTIDC --split_json ..
     --test_only --pretrain PATH_TO_WEIGHTS --save NAME_TO_SAVE
 ```
 
-**Pretrained Checkpoints**: [NYUv2](https://drive.google.com/file/d/1Hc-eS2Oa2sODdujoJv2UXXME8IQyj7FX/view?usp=sharing), KITTI_DC (comming soon!)
+**Pretrained Checkpoints**: [NYUv2](https://drive.google.com/drive/folders/1GlMVhI1Auo9noimR6NN0S-QLwL04ypCb?usp=sharing), [KITTI_DC](https://drive.google.com/drive/folders/1Tp1XAU7D7HOMq_iLEGzvt4I15g_HGBeM?usp=sharing)!
 
 To generate KITTI DC Online evaluation data:
 
@@ -233,7 +233,7 @@ Images for submission can be found in THIS_PROJECT_ROOT/experiments/NAME_TO_SAVE
 
 ## 👩‍⚖️ Acknowledgement
 
-Thanks the authors for their works: [NLSPN](https://github.com/zzangjinsun/NLSPN_ECCV20), [CMT](https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_CMT_Convolutional_Neural_Networks_Meet_Vision_Transformers_CVPR_2022_paper.pdf) [MPViT](https://github.com/youngwanLEE/MPViT), [PVT](https://github.com/whai362/PVT), [Monodepth2](https://github.com/nianticlabs/monodepth2).
+Thanks the authors for their works: [NLSPN](https://github.com/zzangjinsun/NLSPN_ECCV20), [CMT](https://openaccess.thecvf.com/content/CVPR2022/papers/Guo_CMT_Convolutional_Neural_Networks_Meet_Vision_Transformers_CVPR_2022_paper.pdf), [MPViT](https://github.com/youngwanLEE/MPViT), [PVT](https://github.com/whai362/PVT), [Monodepth2](https://github.com/nianticlabs/monodepth2).
 
 Besides, we also thank [DySPN](https://arxiv.org/abs/2202.09769) for providing their evalution results on KITTI DC.
 

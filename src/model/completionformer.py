@@ -29,6 +29,7 @@ class CompletionFormer(nn.Module):
         dep = sample['dep']
 
         pred_init, guide, confidence = self.backbone(rgb, dep)
+        pred_init = pred_init + dep
 
         # Diffusion
         y_inter = [pred_init, ]
