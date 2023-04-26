@@ -16,7 +16,7 @@
     ·
     <a href="http://vision.deis.unibo.it/~smatt/Site/Home.html"><strong>Stefano Mattoccia</strong></a>
   </p>
-  <h3 align="center"><a href="">Paper (Coming Soon)</a> | <a href="https://youmi-zym.github.io/projects/CompletionFormer">Project Page</a></h3>
+  <h3 align="center"><a href="https://arxiv.org/pdf/2304.13030">Paper</a> | <a href="https://youmi-zym.github.io/projects/CompletionFormer">Project Page</a></h3>
   <div align="center"></div>
 </p>
 <p align="center">
