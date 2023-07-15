@@ -243,11 +243,12 @@ Besides, we also thank [DySPN](https://arxiv.org/abs/2202.09769) for providing t
 If you find our work useful in your research please consider citing our paper:
 
 ```
-@inproceedings{Zhang2023CompletionFormer,
-      title     = {CompletionFormer: Depth Completion with Convolutions and Vision Transformers},
-      author    = {Zhang, Youmin and Guo, Xianda and Poggi, Matteo and Zhu, Zheng and Huang, Guan and Mattoccia, Stefano},
-      booktitle = {CVPR},
-      year      = {2023}
-  }
+@inproceedings{zhang2023completionformer,
+  title={Completionformer: Depth completion with convolutions and vision transformers},
+  author={Zhang, Youmin and Guo, Xianda and Poggi, Matteo and Zhu, Zheng and Huang, Guan and Mattoccia, Stefano},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={18527--18536},
+  year={2023}
+}
 ```
 
