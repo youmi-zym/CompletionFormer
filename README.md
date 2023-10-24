@@ -16,7 +16,7 @@
     ·
     <a href="http://vision.deis.unibo.it/~smatt/Site/Home.html"><strong>Stefano Mattoccia</strong></a>
   </p>
-  <h3 align="center"><a href="https://arxiv.org/pdf/2304.13030">Paper</a> | <a href="https://youmi-zym.github.io/projects/CompletionFormer">Project Page</a></h3>
+  <h3 align="center"><a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Zhang_CompletionFormer_Depth_Completion_With_Convolutions_and_Vision_Transformers_CVPR_2023_paper.pdf">Paper</a> | <a href="https://www.youtube.com/watch?v=SLKAwrY2qjg&t=111s">Video</a> | <a href="https://youmi-zym.github.io/projects/CompletionFormer">Project Page</a></h3>
   <div align="center"></div>
 </p>
 <p align="center">
@@ -119,7 +119,7 @@ Note that data lists for NYUv2 are borrowed from the [CSPN repository](https://g
 
 KITTI DC dataset is available at the [KITTI DC Website](http://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_completion).
 
-For color images, KITTI Raw dataset is also needed, which is available at the [KITTI Raw Website](http://www.cvlibs.net/datasets/kitti/raw_data.php).
+For color images, KITTI Raw dataset is also needed, which is available at the [KITTI Raw Website](http://www.cvlibs.net/datasets/kitti/raw_data.php). You can refer to [this script](https://github.com/youmi-zym/CompletionFormer/issues/8#issuecomment-1602302424) for data preparation.
 
 The overall data directory is structured as follows:
 
@@ -208,12 +208,12 @@ $ cd THIS_PROJECT_ROOT/src
 
 # An example command for NYUv2 dataset testing
 $ python main.py --dir_data PATH_TO_NYUv2 --data_name NYU  --split_json ../data_json/nyu.json \
-    --gpus 0 --max_depth 10.0 --num_sample 500 \
+    --gpus 0 --max_depth 10.0 --num_sample 500 --save-image \
     --test_only --pretrain PATH_TO_WEIGHTS --save NAME_TO_SAVE
 
 # An example command for KITTI DC dataset testing
 $ python main.py --dir_data PATH_TO_KITTI_DC --data_name KITTIDC --split_json ../data_json/kitti_dc.json \
-    --patch_height 240 --patch_width 1216 --gpus 0 --max_depth 90.0 --top_crop 100 --test_crop \
+    --patch_height 240 --patch_width 1216 --gpus 0 --max_depth 90.0 --top_crop 100 --test_crop --save-image \
     --test_only --pretrain PATH_TO_WEIGHTS --save NAME_TO_SAVE
 ```
 
@@ -243,11 +243,12 @@ Besides, we also thank [DySPN](https://arxiv.org/abs/2202.09769) for providing t
 If you find our work useful in your research please consider citing our paper:
 
 ```
-@inproceedings{Zhang2023CompletionFormer,
-      title     = {CompletionFormer: Depth Completion with Convolutions and Vision Transformers},
-      author    = {Zhang, Youmin and Guo, Xianda and Poggi, Matteo and Zhu, Zheng and Huang, Guan and Mattoccia, Stefano},
-      booktitle = {CVPR},
-      year      = {2023}
-  }
+@inproceedings{zhang2023completionformer,
+  title={Completionformer: Depth completion with convolutions and vision transformers},
+  author={Zhang, Youmin and Guo, Xianda and Poggi, Matteo and Zhu, Zheng and Huang, Guan and Mattoccia, Stefano},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={18527--18536},
+  year={2023}
+}
 ```
 
