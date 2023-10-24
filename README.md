@@ -37,7 +37,7 @@ conda activate completionformer
 # For CUDA Version == 11.3
 pip install torch==1.10.1+cu113 torchvision==0.11.2+cu113 torchaudio==0.10.1+cu113
 pip install mmcv-full==1.4.4 mmsegmentation==0.22.1  
-pip install timm tqdm thop tensorboardX opencv-python ipdb h5py ipython 
+pip install timm tqdm thop tensorboardX opencv-python ipdb h5py ipython Pillow==9.5.0 
 ```
 We ran our experiments with PyTorch 1.10.1, CUDA 11.3, Python 3.8 and Ubuntu 20.04.
 

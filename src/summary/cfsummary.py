@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 from PIL import Image
+from copy import deepcopy
 
 cmap = 'jet'
 cm = plt.get_cmap(cmap)
@@ -204,7 +205,7 @@ class CompletionFormerSummary(BaseSummary):
             else:
                 # Parse data
                 feat_init = output['pred_init']
-                list_feat = output['pred_inter']
+                list_feat = deepcopy(output['pred_inter'])
 
                 rgb = sample['rgb'].detach()
                 dep = sample['dep'].detach()
@@ -228,7 +229,7 @@ class CompletionFormerSummary(BaseSummary):
 
                 rgb = np.transpose(rgb, (1, 2, 0))
                 for k in range(0, len(list_feat)):
-                    feat_inter = list_feat[k]
+                    feat_inter = deepcopy(list_feat[k])
                     feat_inter = feat_inter[0, 0, :, :].data.cpu().numpy()
                     feat_inter = np.concatenate((rgb, cm(norm(pred))[...,:3], cm(norm(gt))[...,:3], depth_err_to_colorbar(feat_inter, gt)), axis=0)
 
