@@ -43,6 +43,31 @@ We ran our experiments with PyTorch 1.10.1, CUDA 11.3, Python 3.8 and Ubuntu 20.
 
 <!-- We recommend using a [conda environment](https://conda.io/docs/user-guide/tasks/manage-environments.html) to avoid dependency conflicts. -->
 
+#### Docker
+
+You can get started with docker by making sure you're default runtime is set to nvidia-container-runtime
+
+```bash
+# /etc/docker/daemon.json
+{
+    "runtimes": {
+        "nvidia": {
+            "path": "/usr/bin/nvidia-container-runtime",
+            "runtimeArgs": []
+         } 
+    },
+    "default-runtime": "nvidia" 
+}
+```
+
+Then you can build the image along with the DCNv2 cuda kernels with:
+
+```bash
+docker build -t completionformer:latest .
+# run container
+docker run --rm -it --gpus all completionformer
+```
+
 #### NVIDIA Apex
 
 We used NVIDIA Apex (commit @ 4ef930c1c884fdca5f472ab2ce7cb9b505d26c1a) for multi-GPU training.
